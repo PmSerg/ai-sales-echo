@@ -384,10 +384,27 @@ header {
   backdrop-filter: blur(10px);
 }
 
+@media (max-width: 768px) {
+  header {
+    padding: 12px 16px;
+  }
+}
+
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .header-brand {
+    gap: 8px;
+  }
+
+  .brand-icon svg {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 .brand-icon {
@@ -407,9 +424,9 @@ header {
 }
 
 .brand-text h1 {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   background: linear-gradient(135deg, #00F0FF 0%, #1F94FF 50%, #448DFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -418,22 +435,26 @@ header {
   line-height: 1.2;
   text-transform: uppercase;
   font-family: 'Space Mono', 'Roboto Mono', monospace;
+}
 
-  @media (min-width: 768px) {
-    font-size: 32px;
+@media (min-width: 768px) {
+  .brand-text h1 {
+    font-size: 28px;
     letter-spacing: 4px;
   }
 }
 
 .brand-tagline {
   color: var(--Blue-400);
-  font-size: 11px;
+  font-size: 9px;
   margin: 4px 0 0 0;
   letter-spacing: 1px;
   opacity: 0.9;
   font-weight: 300;
+}
 
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
+  .brand-tagline {
     font-size: 13px;
   }
 }
