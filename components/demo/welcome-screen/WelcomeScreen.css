@@ -1,0 +1,162 @@
+.welcome-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  color: var(--Neutral-90);
+  padding: 20px;
+  background: transparent;
+}
+
+.welcome-content {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  position: relative;
+}
+
+/* Partnership Badge */
+.partnership-badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 28px;
+  background: linear-gradient(135deg, rgba(20, 60, 100, 0.2) 0%, rgba(251, 155, 36, 0.15) 100%);
+  border-radius: 50px;
+  border: 1px solid rgba(251, 155, 36, 0.25);
+  box-shadow: 0 4px 16px rgba(20, 60, 100, 0.2);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.partnership-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(251, 155, 36, 0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+.bbw-section, .hisky-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.powered-text {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.bbw-logo {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.partnership-x {
+  font-size: 18px;
+  color: rgba(251, 155, 36, 0.6);
+  margin: 0 8px;
+  font-weight: 300;
+}
+
+.hisky-logo-text {
+  font-size: 16px;
+  color: #FB9B24;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.tagline {
+  font-size: 9px;
+  color: rgba(251, 155, 36, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 500;
+}
+
+/* Large HiSky Logo */
+.hisky-logo-large {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.keabank-icon {
+  filter: drop-shadow(0 8px 24px rgba(75, 123, 245, 0.25));
+  animation: float 4s ease-in-out infinite;
+  margin-bottom: 4px;
+  opacity: 0.95;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+}
+
+.hisky-title {
+  font-size: 68px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: #FFFFFF;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  text-transform: lowercase;
+  text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.hisky-title:hover {
+  letter-spacing: 6px;
+  text-shadow: 0 4px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 2px;
+  margin: 0;
+  font-weight: 300;
+  text-transform: lowercase;
+}
+
+/* CTA */
+.start-hint {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 48px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  animation: pulse-opacity 3s ease-in-out infinite;
+  text-transform: lowercase;
+}
+
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
