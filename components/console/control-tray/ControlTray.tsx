@@ -78,11 +78,18 @@ function ControlTray({ children }: ControlTrayProps) {
     };
   }, [connected, client, muted, audioRecorder, setInputVolume]);
 
-  const handleMicClick = () => {
+  const handleMicClick = async () => {
     if (connected) {
       setMuted(!muted);
     } else {
-      connect();
+      // Request microphone access BEFORE connecting to API (fixes mobile)
+      try {
+        await audioRecorder.requestPermission();
+        await connect();
+      } catch (error) {
+        console.error('Failed to get microphone permission:', error);
+        alert('Microphone access is required. Please allow microphone access in your browser settings.');
+      }
     }
   };
 

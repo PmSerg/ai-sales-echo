@@ -55,6 +55,25 @@ export class AudioRecorder {
 
   constructor(public sampleRate = 16000) {}
 
+  /**
+   * Request microphone permission early (fixes mobile Safari)
+   * This should be called directly from user interaction
+   */
+  async requestPermission() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      throw new Error('getUserMedia is not supported in this browser');
+    }
+
+    // Request permission and immediately release (we'll get it again in start())
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    stream.getTracks().forEach(track => track.stop());
+
+    // Resume AudioContext if suspended (iOS requirement)
+    if (this.audioContext && this.audioContext.state === 'suspended') {
+      await this.audioContext.resume();
+    }
+  }
+
   async start() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       throw new Error('Could not request user media');
@@ -63,6 +82,12 @@ export class AudioRecorder {
     this.starting = new Promise(async (resolve, reject) => {
       this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       this.audioContext = await audioContext({ sampleRate: this.sampleRate });
+
+      // Resume AudioContext if suspended (required for iOS/mobile)
+      if (this.audioContext.state === 'suspended') {
+        await this.audioContext.resume();
+      }
+
       this.source = this.audioContext.createMediaStreamSource(this.stream);
 
       const workletName = 'audio-recorder-worklet';
