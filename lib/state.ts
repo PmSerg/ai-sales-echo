@@ -95,7 +95,7 @@ export const useUI = create<{
   isSidebarOpen: boolean;
   toggleSidebar: () => void;
 }>(set => ({
-  isSidebarOpen: true,
+  isSidebarOpen: false, // Hidden by default for users
   toggleSidebar: () => set(state => ({ isSidebarOpen: !state.isSidebarOpen })),
 }));
 

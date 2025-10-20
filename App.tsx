@@ -18,6 +18,7 @@
  * limitations under the License.
  */
 
+import { useEffect } from 'react';
 import ControlTray from './components/console/control-tray/ControlTray';
 import ErrorScreen from './components/demo/ErrorScreen';
 import StreamingConsole from './components/demo/streaming-console/StreamingConsole';
@@ -26,6 +27,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import { LiveAPIProvider } from './contexts/LiveAPIContext';
 import AudioVisualizer from './components/visualizer/AudioVisualizer';
+import { useUI } from './lib/state';
 
 // FIX: Use process.env.API_KEY per coding guidelines.
 const API_KEY = process.env.API_KEY as string;
@@ -41,6 +43,21 @@ if (typeof API_KEY !== 'string') {
  * Manages video streaming state and provides controls for webcam/screen capture.
  */
 function App() {
+  const { toggleSidebar } = useUI();
+
+  // Admin hotkey: Ctrl+Shift+S to toggle Sidebar
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'S') {
+        e.preventDefault();
+        toggleSidebar();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [toggleSidebar]);
+
   return (
     <div className="App">
       <LiveAPIProvider apiKey={API_KEY}>

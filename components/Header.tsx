@@ -35,7 +35,8 @@ export default function Header() {
           <p className="brand-tagline">Money without borders</p>
         </div>
       </div>
-      <div className="header-right">
+      {/* Settings button hidden from users - use Ctrl+Shift+S to open */}
+      {/* <div className="header-right">
         <button
           className="settings-button"
           onClick={toggleSidebar}
@@ -43,7 +44,7 @@ export default function Header() {
         >
           <span className="icon">tune</span>
         </button>
-      </div>
+      </div> */}
     </header>
   );
 }
